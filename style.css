@@ -9,6 +9,40 @@ body {
   padding: 0;
   margin: 0;
 }
-#sectionTitle {
+#title {
   text-align: center;
+}
+
+.shared-section {
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 511px;
+  height: 330px;
+  border-radius: 8px;
+}
+
+#section1 {
+  background-image: url("https://i.ibb.co/10G48Vj/CCS5510.png");
+}
+
+#section2 {
+  background-image: url("https://i.ibb.co/88r1b5P/CCS5510-1.png");
+}
+#section3 {
+  background-image: url("https://i.ibb.co/SRshmdF/CCS5510-3.png");
+}
+#section4 {
+  background-image: url("https://i.ibb.co/F3NX7TG/CCS5510-2.png");
+}
+
+#sectionContainer {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  gap: 40px;
+}
+
+#container {
+  max-width: 1280px;
+  margin: auto;
 }
