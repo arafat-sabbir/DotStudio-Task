@@ -1,48 +1,55 @@
 * {
   font-family: "Inter", sans-serif;
-}
-
-html,
-body {
-  width: 100%;
-  height: 100%;
   padding: 0;
   margin: 0;
 }
+
 #title {
   text-align: center;
 }
 
 .shared-section {
-  background-repeat: no-repeat;
-  background-size: cover;
+  position: relative;
   width: 511px;
   height: 330px;
   border-radius: 8px;
+  overflow: hidden; /* Ensure the pseudo-element stays within boundaries */
 }
 
-#section1 {
-  background-image: url("https://i.ibb.co/10G48Vj/CCS5510.png");
+.shared-section::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 0;
+  background-color: rgba(255, 0, 0, 0.74); /* Initial color */
+  opacity: 0; /* Start with 0 opacity */
+  transition: height 0.7s ease, opacity 0.7s ease; /* Transition for height and opacity */
 }
 
-#section2 {
-  background-image: url("https://i.ibb.co/88r1b5P/CCS5510-1.png");
-}
-#section3 {
-  background-image: url("https://i.ibb.co/SRshmdF/CCS5510-3.png");
-}
-#section4 {
-  background-image: url("https://i.ibb.co/F3NX7TG/CCS5510-2.png");
+.shared-section:hover::before {
+  height: 80%; /* Increase height on hover */
+  opacity: 1; /* Fade in the pseudo-element */
 }
 
-#sectionContainer {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: repeat(2, 1fr);
-  gap: 40px;
+.shared-section:hover .sectiontitle {
+  opacity: 0; /* Make the section title disappear on hover */
 }
 
-#container {
-  max-width: 1280px;
-  margin: auto;
+.sectiontitle {
+  position: absolute;
+  bottom: 10px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  padding: 20px 0;
+  font-size: 24px;
+  color: white;
+  z-index: 1; /* Ensure text appears above pseudo-element */
+  transition: opacity 0.7s ease; /* Transition for opacity */
+}
+
+.shared-section:hover .sectiontitle {
+  opacity: 0; /* Make the section title disappear on hover */
 }
