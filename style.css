@@ -1,55 +1,204 @@
+@font-face {
+  font-family: GothamMedium;
+  src: url("GothamMedium.ttf");
+}
+/* global style and font family */
 * {
-  font-family: "Inter", sans-serif;
   padding: 0;
+  font-family: GothamMedium;
   margin: 0;
 }
 
+/* Why Choose Us Title */
 #title {
   text-align: center;
+  margin-top: 5vh;
+  margin-bottom: 5vh;
 }
 
+/* all four section shared styles */
 .shared-section {
-  position: relative;
+  background-repeat: no-repeat;
+  background-size: cover;
   width: 511px;
   height: 330px;
   border-radius: 8px;
-  overflow: hidden; /* Ensure the pseudo-element stays within boundaries */
+  position: relative;
+  transition: width 0.7s ease-in-out, height 0.7s ease-in-out;
 }
 
+/* Shared Section before style */
 .shared-section::before {
   content: "";
   position: absolute;
-  bottom: 0;
+  bottom: 20px;
   left: 0;
-  width: 100%;
+  width: 0;
   height: 0;
-  background-color: rgba(255, 0, 0, 0.74); /* Initial color */
-  opacity: 0; /* Start with 0 opacity */
-  transition: height 0.7s ease, opacity 0.7s ease; /* Transition for height and opacity */
+  background-color: #ff3434;
+  transition: width 0.7s ease-in-out, height 0.7s ease-in-out; /* Added transition */
 }
-
+/* change the before style if Shared section hovered  */
 .shared-section:hover::before {
-  height: 80%; /* Increase height on hover */
-  opacity: 1; /* Fade in the pseudo-element */
+  width: 100%;
+  height: 80%;
+  background-color: #f0284d;
 }
 
-.shared-section:hover .sectiontitle {
-  opacity: 0; /* Make the section title disappear on hover */
+/* The Wrapper For The Whole Structure */
+#container {
+  max-width: 1280px;
+  margin: auto;
 }
 
-.sectiontitle {
+/* Section 1 background image */
+#section1 {
+  background-image: url("https://i.ibb.co/10G48Vj/CCS5510.png");
+}
+
+/* Section 2 background image */
+#section2 {
+  background-image: url("https://i.ibb.co/88r1b5P/CCS5510-1.png");
+}
+
+/* Section 3 background image */
+#section3 {
+  background-image: url("https://i.ibb.co/SRshmdF/CCS5510-3.png");
+}
+
+/* Section 4 background image */
+#section4 {
+  background-image: url("https://i.ibb.co/F3NX7TG/CCS5510-2.png");
+}
+
+/* All four section container to create a layout with grid */
+#sectionContainer {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  gap: 40px;
+}
+
+/* If shared section is hovered the section title will disappear */
+.shared-section:hover .sectionTitle {
+  opacity: 0;
+  display: none;
+  transition: opacity 0.7ss ease-out;
+}
+
+/* If shared section hover out section title will appear */
+.shared-section:hover .sectionTitle.visible {
+  opacity: 1;
+  display: block;
+  transition: opacity 0.7ss ease-out;
+}
+
+/* The content of the shared section before element initially hidden  */
+.sectionContent {
   position: absolute;
-  bottom: 10px;
-  left: 0;
-  right: 0;
-  text-align: center;
-  padding: 20px 0;
-  font-size: 24px;
+  width: 0;
+  height: 0%;
+  top: 30%;
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   color: white;
-  z-index: 1; /* Ensure text appears above pseudo-element */
-  transition: opacity 0.7s ease; /* Transition for opacity */
+  text-align: center;
+  transition: all 0.7s ease-in-out 0.7s; /* Adjusted transition properties */
 }
 
-.shared-section:hover .sectiontitle {
-  opacity: 0; /* Make the section title disappear on hover */
+/*The content of the shared section before element Wil visible after hover  */
+.shared-section:hover .sectionContent {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 40%;
+  margin: auto;
+  transition: all 0.7s ease-in-out; /* Removed transition-delay */
+}
+
+/* If shared section is hovered change the styledTitle color */
+.shared-section:hover .styledTitle {
+  color: white;
+}
+
+/* title for each section */
+.sectionTitle {
+  position: absolute;
+  bottom: 0px;
+  text-shadow: 0px 0px 10px 0px;
+  right: 0;
+  left: 0;
+  text-align: center;
+  padding: 30px 0;
+  font-size: 28px;
+  color: white;
+  opacity: 1;
+  /* Linear gradient from bottom to top with opacity */
+  background-image: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 10),
+    rgba(0, 0, 0, 0.1)
+  );
+}
+
+/* StyledTitle */
+.styledTitle {
+  color: #f0284d;
+}
+
+/* Mobile Responsive Media Query */
+@media only screen and (max-width: 767px) {
+  /* Make The Card One Column In Mobile */
+  #sectionContainer {
+    grid-template-columns: repeat(1, 1fr);
+  }
+  /* Make the width and height adjustable on mobile device */
+  .shared-section {
+    width: 98vw;
+    margin: auto;
+    border-radius: 8px;
+  }
+  /* Added Border Radius on the section title */
+  .sectionTitle {
+    border-bottom-right-radius: 8px;
+    border-bottom-left-radius: 8px;
+  }
+}
+
+/* Responsive Media Query For Tablet */
+@media only screen and (min-width: 768px) and (max-width: 1023px) {
+  #sectionContainer {
+    grid-template-columns: repeat(1, 1fr);
+    justify-items: center;
+  }
+  /* Added Border Radius on the section title */
+  .sectionTitle {
+    border-bottom-right-radius: 8px;
+    border-bottom-left-radius: 8px;
+  }
+
+  /* Change the shared section size on tablet device */
+  .shared-section {
+    width: 80vw;
+    height: 400px;
+    margin: auto;
+    border-radius: 8px;
+  }
+}
+
+/* Responsive Media Query For Laptop And Larger Device */
+@media only screen and (min-width: 1024px) {
+  /* made two column grid */
+  #sectionContainer {
+    grid-template-columns: repeat(2, 1fr);
+    justify-items: center;
+  }
+  /* Added Border Radius on the section title */
+  .sectionTitle {
+    border-bottom-right-radius: 8px;
+    border-bottom-left-radius: 8px;
+  }
 }
